@@ -1,0 +1,47 @@
+<div class="card border-dark mb-3">
+  <div class="card-header">{{nombreTabla}}</div>
+  <div class="card-body text-dark">
+
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-success" type="button" routerLink="/proveedores/form">Nuevo Proveedor</button>
+    </div>
+
+  <div class="alert alert-info" *ngIf="listOfProveedores.length == 0">
+    No customers stored yet
+  </div>
+
+    <table class="table table-bordered tabled-striped" *ngIf="listOfProveedores.length > 0">
+        <thead>
+          <tr>
+          <th>ID</th>
+          <th>RFC</th>
+          <th>Razón Social</th>
+          <th>Nombre Comercial</th>
+          <th>Productos</th>
+          <th>Banco</th>
+          <th>Cuenta/CLABE</th>
+          <th>Teléfono</th>                
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let proveedor of listOfProveedores" class="align-middle">
+          <td>{{ proveedor.id }}</td>
+          <td>{{ proveedor.rfc}}</td>
+          <td>{{ proveedor.razon_social}}</td>
+          <td>{{ proveedor.nombre_comercial}}</td>
+          <td>{{ proveedor.productos}}</td>
+          <td>{{ proveedor.banco}}</td>
+          <td>{{ proveedor.cuenta}}</td>
+          <td>{{ proveedor.telefono}}</td>
+              <td>
+                <button type="button" name="edit_button" class="btn btn-primary mx-2"
+                [routerLink]="['/proveedores/form', proveedor.rfc]">editar</button>
+
+                <button type="button" name="delete_button" class="btn btn-danger"
+                (click)="deleteProveedor(proveedor)">borrar</button>
+              </td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+</div>

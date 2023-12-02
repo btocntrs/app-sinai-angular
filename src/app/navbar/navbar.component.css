@@ -1,0 +1,10 @@
+.activo {
+    background-color: rgba(23, 105, 23, 0.8); /* Cambia el último valor para ajustar la opacidad */
+    border-radius: 10px; 
+  }
+
+.activo a {
+    color: whitesmoke;
+    font-weight: bold;
+}
+

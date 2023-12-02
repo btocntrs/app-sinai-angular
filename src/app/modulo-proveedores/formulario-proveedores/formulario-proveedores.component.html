@@ -1,0 +1,105 @@
+<ul class="alert alert-danger" *ngIf="errors.length > 0">
+    <li *ngFor="let error of errors">
+        {{error}}
+    </li>
+</ul>
+
+<div  class="card bg-dark text-white">
+    <div class="card-header">{{titulo}}</div>
+    <div class="card-body">
+        <form #proveedorForm="ngForm">
+
+            <div class="form-group row">
+                <label for="rfc" class="col-form-label col-sm-2">RFC</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.rfc" name="rfc" 
+                    required minlength="11" #rfc="ngModel">
+                    <div class="alert alert-danger text-red" *ngIf="rfc.invalid && (rfc.dirty || rfc.touched)">
+                        <div *ngIf="rfc?.errors?.['required']">
+                            El RFC no debe estar vacío
+                        </div>
+                        <div *ngIf="rfc?.errors?.['minlength']">
+                            El RFC debe tener por lo menos 11 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="razon_social" class="col-form-label col-sm-2">Razón Social</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.razon_social" name="razon_social" 
+                    required minlength="4" #razon_social="ngModel">
+                    <div class="alert alert-danger text-red" *ngIf="razon_social.invalid && (razon_social.dirty || razon_social.touched)">
+                        <div *ngIf="razon_social?.errors?.['required']">
+                            La razón social no debe estar vacía
+                        </div>
+                        <div *ngIf="razon_social?.errors?.['minlength']">
+                            La Razón Social debe tener por lo menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="nombre_comercial" class="col-form-label col-sm-2">Nombre Comercial</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.nombre_comercial" name="nombre_comercial">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="productos" class="col-form-label col-sm-2">Productos</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.productos" name="productos" 
+                    required minlength="4" #productos="ngModel">
+                    <div class="alert alert-danger text-red" *ngIf="productos.invalid && (productos.dirty || productos.touched)">
+                        <div *ngIf="productos?.errors?.['required']">
+                            El campo productos no debe estar vacío
+                        </div>
+                        <div *ngIf="productos?.errors?.['minlength']">
+                            El campo productos debe tener por lo menos 4 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="banco" class="col-form-label col-sm-2">Banco</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.banco" name="banco">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="cuenta" class="col-form-label col-sm-2">Cuenta/CLABE</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="proveedor.cuenta" name="cuenta">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
+                <div class="col-sm-6">
+                    <input type="tel" class="form-control" [(ngModel)]="proveedor.telefono" name="telefono">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" type="button" (click)='saveProveedor()' *ngIf="update else updateButton"
+                    [disabled]="proveedorForm.form.invalid">Guardar</button>
+                    
+                    <ng-template #updateButton>
+                        <button class="btn btn-primary" type="button" (click)='updateProveedor()'
+                        [disabled]="proveedorForm.form.invalid">Actualizar</button>
+                    </ng-template>
+
+                    <button type="button" name="cancel_button" class="btn btn-danger mx-3"
+                  (click)="cancel()">Cancelar</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
